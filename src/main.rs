@@ -1,3 +1,5 @@
+#![windows_subsystem = "windows"]
+
 use windows::core::PCSTR;
 use windows::Win32::Media::Audio::{PlaySoundA, SND_MEMORY, SND_NODEFAULT};
 
