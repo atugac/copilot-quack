@@ -34,6 +34,12 @@
                     Description="Quacks.">
             </uap:VisualElements>
 			<Extensions>
+                <uap:Extension Category="windows.protocol">
+                    <uap:Protocol Name="quack">
+                        <uap:Logo>Assets\Square44x44Logo.png</uap:Logo>
+                        <uap:DisplayName>Quack</uap:DisplayName>
+                    </uap:Protocol>
+                </uap:Extension>
                 <uap3:Extension Category="windows.appExtension">
                     <uap3:AppExtension Name="com.microsoft.windows.copilotkeyprovider" 
                         Id="Quack"
