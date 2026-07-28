@@ -2,3 +2,6 @@
 name = "copilot-quack"
 version = "0.1.0"
 edition = "2024"
+
+[dependencies]
+windows = { version = "0.62.2", features = ["Win32", "Win32_Media", "Win32_Media_Audio"] }
