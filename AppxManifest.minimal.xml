@@ -24,7 +24,7 @@
     <Applications>
         <Application
                 Id="Quack"
-                Executable="copilot-quack.exe"
+                Executable="quack.exe"
                 EntryPoint="Windows.FullTrustApplication">
             <uap:VisualElements
                     BackgroundColor="transparent"
