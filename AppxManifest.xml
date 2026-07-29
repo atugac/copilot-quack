@@ -69,7 +69,7 @@
                             <desktop5:Verb Id="QuackDir" Clsid="A5BE5705-FFBD-4023-9BA1-965769552B93" />
                         </desktop5:ItemType>
                         <desktop5:ItemType Type="Directory\Background">
-                            <desktop5:Verb Id="QuackDir" Clsid="A5BE5705-FFBD-4023-9BA1-965769552B93" />
+                            <desktop5:Verb Id="QuackBg" Clsid="A5BE5705-FFBD-4023-9BA1-965769552B93" />
                         </desktop5:ItemType>
                     </desktop4:FileExplorerContextMenus>
                 </desktop4:Extension>
