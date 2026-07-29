@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Package
+        xmlns="http://schemas.microsoft.com/appx/manifest/foundation/windows10"
+        xmlns:uap="http://schemas.microsoft.com/appx/manifest/uap/windows10"
+		xmlns:uap3="http://schemas.microsoft.com/appx/manifest/uap/windows10/3"
+        xmlns:rescap="http://schemas.microsoft.com/appx/manifest/foundation/windows10/restrictedcapabilities"
+        IgnorableNamespaces="uap uap3 rescap">
+    <Identity Name="Quack" Publisher="CN=Tangonell" Version="0.1.0.0" ProcessorArchitecture="neutral" />
+    <Properties>
+        <DisplayName>Quack</DisplayName>
+        <PublisherDisplayName>Tangonell</PublisherDisplayName>
+        <Description>Quacks.</Description>
+        <Logo>Assets\StoreLogo.png</Logo>
+    </Properties>
+    <Resources>
+        <Resource Language="en-us" />
+    </Resources>
+    <Dependencies>
+        <TargetDeviceFamily Name="Windows.Desktop" MinVersion="10.0.22000.1" MaxVersionTested="10.0.26200.8894" />
+    </Dependencies>
+    <Capabilities>
+        <rescap:Capability Name="runFullTrust" />
+    </Capabilities>
+    <Applications>
+        <Application
+                Id="Quack"
+                Executable="copilot-quack.exe"
+                EntryPoint="Windows.FullTrustApplication">
+            <uap:VisualElements
+                    BackgroundColor="transparent"
+                    DisplayName="Quack"
+                    Square150x150Logo="Assets\Square150x150Logo.png"
+                    Square44x44Logo="Assets\Square44x44Logo.png"
+                    Description="Quacks.">
+            </uap:VisualElements>
+			<Extensions>
+                <uap:Extension Category="windows.protocol">
+                    <uap:Protocol Name="quack">
+                        <uap:Logo>Assets\Square44x44Logo.png</uap:Logo>
+                        <uap:DisplayName>Quack</uap:DisplayName>
+                    </uap:Protocol>
+                </uap:Extension>
+                <uap3:Extension Category="windows.appExtension">
+                    <uap3:AppExtension Name="com.microsoft.windows.copilotkeyprovider" 
+                        Id="Quack"
+                        DisplayName="Quack"
+                        Description="Quacks."
+                        PublicFolder="Public" />
+                </uap3:Extension>
+            </Extensions>
+        </Application>
+    </Applications>
+</Package>
