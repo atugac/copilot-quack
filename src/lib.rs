@@ -9,6 +9,7 @@ use windows::Win32::Foundation::{E_NOTIMPL, HMODULE};
 use windows::Win32::System::Com::IClassFactory;
 use windows::Win32::System::Com::{IBindCtx, IClassFactory_Impl};
 use windows::Win32::System::LibraryLoader::GetModuleFileNameW;
+use windows::Win32::System::SystemServices::SFGAO_FOLDER;
 use windows::Win32::UI::Shell::{
     IEnumExplorerCommand, IExplorerCommand, IShellItemArray,
     IExplorerCommand_Impl, SHStrDupW
@@ -20,15 +21,23 @@ pub struct QuackCommand;
 
 impl IExplorerCommand_Impl for QuackCommand_Impl {
     fn GetTitle(&self, psiitemarray: Ref<IShellItemArray>) -> windows_core::Result<PWSTR> {
-        let count = if let Some(items) = psiitemarray.as_ref() {
-            unsafe { items.GetCount()? }
+        let title = if let Some(items) = psiitemarray.as_ref() {
+            let count = unsafe { items.GetCount()? };
+            match count {
+                0 => w!("Quack"), // Shouldn't be reachable
+                1 => unsafe {
+                    let item = items.GetItemAt(0)?;
+                    let attr = item.GetAttributes(SFGAO_FOLDER)?;
+                    if (attr & SFGAO_FOLDER).0 != 0 {
+                        w!("Quack at this folder")
+                    } else {
+                        w!("Quack at this file")
+                    }
+                },
+                _ => w!("Quack at these items"),
+            }
         } else {
-            0
-        };
-        let title = match count {
-            0 => w!("Quack"),
-            1 => w!("Quack at this item"),
-            _ => w!("Quack at these items"),
+            w!("Quack here")
         };
         unsafe {
             SHStrDupW(title)
