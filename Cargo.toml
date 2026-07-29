@@ -2,6 +2,21 @@
 name = "copilot-quack"
 version = "0.1.0"
 edition = "2024"
+license = "MIT"
+build = "build.rs"
+
+[lib]
+name = "quack_shell"
+crate-type = ["cdylib"]
+path = "src/lib.rs"
+
+[[bin]]
+name = "quack"
+path = "src/main.rs"
 
 [dependencies]
-windows = { version = "0.62.2", features = ["Win32", "Win32_Media", "Win32_Media_Audio"] }
+windows = { version = "0.62.2", features = ["Win32", "Win32_Media", "Win32_Media_Audio", "Win32_UI", "Win32_UI_Shell", "Win32_System_Com", "System", "Win32_System_LibraryLoader"] }
+windows-core = "0.62.2"
+
+[build-dependencies]
+embed-resource = "3.0.11"

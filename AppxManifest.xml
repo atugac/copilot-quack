@@ -3,8 +3,11 @@
         xmlns="http://schemas.microsoft.com/appx/manifest/foundation/windows10"
         xmlns:uap="http://schemas.microsoft.com/appx/manifest/uap/windows10"
 		xmlns:uap3="http://schemas.microsoft.com/appx/manifest/uap/windows10/3"
+        xmlns:desktop4="http://schemas.microsoft.com/appx/manifest/desktop/windows10/4"
+        xmlns:desktop5="http://schemas.microsoft.com/appx/manifest/desktop/windows10/5"
+        xmlns:com="http://schemas.microsoft.com/appx/manifest/com/windows10"
         xmlns:rescap="http://schemas.microsoft.com/appx/manifest/foundation/windows10/restrictedcapabilities"
-        IgnorableNamespaces="uap uap3 rescap">
+        IgnorableNamespaces="uap uap3 desktop4 desktop5 com rescap">
     <Identity Name="Quack" Publisher="CN=Tangonell" Version="0.1.0.0" ProcessorArchitecture="neutral" />
     <Properties>
         <DisplayName>Quack</DisplayName>
@@ -47,6 +50,29 @@
                         Description="Quacks."
                         PublicFolder="Public" />
                 </uap3:Extension>
+                <com:Extension Category="windows.comServer">
+                    <com:ComServer>
+                        <com:SurrogateServer DisplayName="Quack">
+                            <com:Class
+                                    Id="A5BE5705-FFBD-4023-9BA1-965769552B93"
+                                    Path="quack_shell.dll"
+                                    ThreadingModel="STA" />
+                        </com:SurrogateServer>
+                    </com:ComServer>
+                </com:Extension>
+                <desktop4:Extension Category="windows.fileExplorerContextMenus">
+                    <desktop4:FileExplorerContextMenus>
+                        <desktop5:ItemType Type="*">
+                            <desktop5:Verb Id="QuackFile" Clsid="A5BE5705-FFBD-4023-9BA1-965769552B93" />
+                        </desktop5:ItemType>
+                        <desktop5:ItemType Type="Directory">
+                            <desktop5:Verb Id="QuackDir" Clsid="A5BE5705-FFBD-4023-9BA1-965769552B93" />
+                        </desktop5:ItemType>
+                        <desktop5:ItemType Type="Directory\Background">
+                            <desktop5:Verb Id="QuackDir" Clsid="A5BE5705-FFBD-4023-9BA1-965769552B93" />
+                        </desktop5:ItemType>
+                    </desktop4:FileExplorerContextMenus>
+                </desktop4:Extension>
             </Extensions>
         </Application>
     </Applications>
