@@ -114,9 +114,7 @@ unsafe extern "system" {
 
 #[allow(unsafe_op_in_unsafe_fn)]
 unsafe fn get_module_instance_handle() -> HMODULE {
-    unsafe {
-        HMODULE(&__ImageBase as *const _ as *mut c_void)
-    }
+    HMODULE(&__ImageBase as *const _ as *mut c_void)
 }
 
 #[unsafe(no_mangle)]
