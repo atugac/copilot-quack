@@ -7,4 +7,6 @@
     <data name="QuackMulti"><value>Quack at these items</value></data>
     <data name="QuackHere"><value>Quack here</value></data>
     <data name="QuackMisc"><value>Quack</value></data>
+    <data name="ShareDisplayName"><value>Duck</value></data>
+    <data name="ShareDescription"><value>A duck.</value></data>
 </root>

@@ -24,12 +24,14 @@ This small utility makes it quack!
 *(Try `quack://` in your browser!)*
 - **Context menu:** Adds a `Quack` entry to the context menu.  
 *(Try right-clicking a file!)*
+- **Share menu:** Adds a `Duck` entry to the share menu.  
+*(Try sharing a file with the duck!)*
 
 ## Technical highlights
 - **Self-contained:** The audio file is baked into the binary.
 - **Zero runtime dependencies:** The app interfaces with the Win32 API (via the `windows` crate)
 to play audio and provide context menu support.
-- **Minimal footprint:** The executable is only ~100KiB (audio included), and it doesn't run in the background.
+- **Minimal footprint:** The `quack` executable is only ~100KiB (audio included), and it doesn't run in the background.
 - **Privacy-first:** No artificial intelligence, only avian intelligence.
 
 ## Structure
@@ -65,6 +67,7 @@ to play audio and provide context menu support.
     (cat ./AppxManifest.xml).Replace("neutral", "$arch") | Set-Content ./msix/$arch/AppxManifest.xml
     cp ./target/release/quack.exe ./msix/$arch/
     cp ./target/release/quack_shell.dll ./msix/$arch/
+    cp ./target/release/duck.exe ./msix/$arch/
     cp -Recurse -Force ./pri/Assets/ ./msix/$arch/
     ```
 5. **Generate a certificate** (first time only):

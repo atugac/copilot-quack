@@ -14,13 +14,17 @@ path = "src/lib.rs"
 name = "quack"
 path = "src/main.rs"
 
+[[bin]]
+name = "duck"
+path = "src/duck.rs"
+
 [dependencies]
 windows = { version = "0.62.2", features = [
     "Win32",
     "Win32_Media_Audio",
     "Win32_UI_Shell",
     "Win32_System_Com", "Win32_System_LibraryLoader", "Win32_System_SystemServices",
-    "ApplicationModel_Resources"
+    "ApplicationModel_Resources", "ApplicationModel_Activation", "ApplicationModel_DataTransfer_ShareTarget"
 ] }
 windows-core = "0.62.2"
 

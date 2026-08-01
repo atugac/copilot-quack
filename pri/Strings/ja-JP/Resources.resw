@@ -7,4 +7,6 @@
     <data name="QuackMulti"><value>これらのアイテムにガーガーする</value></data>
     <data name="QuackHere"><value>ここでガーガーする</value></data>
     <data name="QuackMisc"><value>ガーガーする</value></data>
+    <data name="ShareDisplayName"><value>アヒル</value></data>
+    <data name="ShareDescription"><value>アヒル。</value></data>
 </root>

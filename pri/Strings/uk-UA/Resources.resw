@@ -7,4 +7,6 @@
     <data name="QuackMulti"><value>Крякнути на ці елементи</value></data>
     <data name="QuackHere"><value>Крякнути тут</value></data>
     <data name="QuackMisc"><value>Крякнути</value></data>
+    <data name="ShareDisplayName"><value>Качка</value></data>
+    <data name="ShareDescription"><value>Качка.</value></data>
 </root>

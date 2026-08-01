@@ -78,5 +78,28 @@
                 </desktop4:Extension>
             </Extensions>
         </Application>
+        <Application
+                Id="DuckShareTarget"
+                Executable="duck.exe"
+                EntryPoint="Windows.FullTrustApplication">
+            <uap:VisualElements
+                    AppListEntry="none"
+                    BackgroundColor="transparent"
+                    DisplayName="ms-resource:ShareDisplayName"
+                    Square150x150Logo="Assets\Square150x150Logo.png"
+                    Square44x44Logo="Assets\Square44x44Logo.png"
+                    Description="ms-resource:ShareDescription"
+            >
+            </uap:VisualElements>
+            <Extensions>
+                <uap:Extension Category="windows.shareTarget">
+                    <uap:ShareTarget>
+                        <uap:SupportedFileTypes>
+                            <uap:SupportsAnyFileType />
+                        </uap:SupportedFileTypes>
+                    </uap:ShareTarget>
+                </uap:Extension>
+            </Extensions>
+        </Application>
     </Applications>
 </Package>

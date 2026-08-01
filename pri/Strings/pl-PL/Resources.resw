@@ -7,4 +7,6 @@
     <data name="QuackMulti"><value>Kwaknij na te elementy</value></data>
     <data name="QuackHere"><value>Kwaknij tutaj</value></data>
     <data name="QuackMisc"><value>Kwaknij</value></data>
+    <data name="ShareDisplayName"><value>Kaczka</value></data>
+    <data name="ShareDescription"><value>Kaczka.</value></data>
 </root>
