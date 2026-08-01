@@ -1,4 +1,4 @@
-![Logo](./Assets/Square150x150Logo.png)
+![Logo](pri/Assets/Square150x150Logo.png)
 
 ![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)
 ![Rust](https://img.shields.io/badge/Rust-D34516.svg?logo=rust&logoColor=white)
@@ -37,56 +37,78 @@ to play audio and provide context menu support.
 - `quack_shell.dll`: The COM shell extension that provides the context menu integration.
 
 ## Requirements
-- **Windows 11**
+- **Runtime requirements:**
+  - **Windows 10** (10.0.18362 or later)
+- **Build requirements:**
+  - **[Rust](https://www.rust-lang.org/tools/install)**
+  - **Windows App Certification Kit**
+    (from the [Windows SDK](https://developer.microsoft.com/en-us/windows/downloads/windows-10-sdk/))
 
 ## How to build & install
-**Prerequisites:** [Rust](https://www.rust-lang.org/tools/install), [winapp](https://github.com/microsoft/winappCli)
 1. **Build the project:**
     ```pwsh
     cargo build --release
     ```
-2. **Prepare packaging directory:**
+2. **Create the packaging directory:**
     ```pwsh
-    mkdir msix
-    cp ./target/release/quack.exe ./msix/
-    cp ./target/release/quack_shell.dll ./msix/
+   $arch = "{arch}"
+   mkdir ./msix/$arch/
     ```
-3. **Generate a certificate** (first time only):
+   where `{arch}` is `x64` or `arm64`.
+
+3. **Create .pri file:**
     ```pwsh
-    winapp cert generate --if-exists skip
+    makepri new /pr . /cf priconfig.xml /of ./msix/$arch/resources.pri /o
     ```
-4. **Install the certificate** (first time only, requires admin rights):
+4. **Prepare the packaging directory:**
     ```pwsh
-    winapp cert install ./devcert.pfx
+    (cat ./AppxManifest.xml).Replace("neutral", "$arch") | Set-Content ./msix/$arch/AppxManifest.xml
+    cp ./target/release/quack.exe ./msix/$arch/
+    cp ./target/release/quack_shell.dll ./msix/$arch/
+    cp -Recurse -Force ./pri/Assets/ ./msix/$arch/
     ```
-5. **Package the app:**
+5. **Generate a certificate** (first time only):
     ```pwsh
-    winapp pack ./msix --cert ./devcert.pfx
+    $thumbprint = (New-SelfSignedCertificate -Type Custom -KeyUsage DigitalSignature -CertStoreLocation "Cert:\CurrentUser\My" -TextExtension @("2.5.29.37={text}1.3.6.1.5.5.7.3.3", "2.5.29.19={text}") -Subject "CN=Tangonell" -FriendlyName "Quack Dev Certificate").Thumbprint
+    $passwd = "{password}"
+    $securePasswd = ConvertTo-SecureString -String "$passwd" -Force -AsPlainText
+    Export-PfxCertificate -cert "Cert:\CurrentUser\My\$thumbprint" -FilePath "./devcert.pfx" -Password $securePasswd
+    Import-PfxCertificate -CertStoreLocation "Cert:\LocalMachine\TrustedPeople" -Password $securePasswd -FilePath ./devcert.pfx
     ```
-6. **Install the generated `.msix` package.**
-7. **Set Quack as your Copilot key provider**
+   where `{password}` is the certificate password.
+
+6. **Package the app:**
+    ```pwsh
+    makeappx pack /d ./msix/$arch/ /p ./msix/quack_$arch.msix /o
+    ```
+7. **Sign the app:**
+    ```pwsh
+    signtool sign /fd SHA256 /a /f ./devcert.pfx /p "$passwd" ./msix/quack_$arch.msix
+    ```
+8. **Install the generated `.msix` package.**
+9. **Set Quack as your Copilot key provider** (Windows 11):
     - Go to **Settings > Bluetooth & devices > Keyboard > Customize Copilot key on keyboard**.
     - Select **Quack**.
-8. **Have fun!**
+10. **Have fun!**
 
 ## Minimal build
 If you only want to build the Copilot key provider without the extra features:
+
 1. **Build the project:**
     ```pwsh
     cargo build --bin quack --release
     ```
-2. **Prepare packaging directory:**
+2. **Create the packaging directory** (see above).
+3. **Create `.pri` file** (see above).
+4. **Prepare the packaging directory:**
     ```pwsh
-    mkdir msix
-    cp ./target/release/quack.exe ./msix/
+    (cat ./AppxManifest.minimal.xml).Replace("neutral", "$arch") | Set-Content ./msix/$arch/AppxManifest.xml
+    cp ./target/release/quack.exe ./msix/$arch/
+    cp -Recurse -Force ./pri/Assets/ ./msix/$arch/
     ```
-3. **Generate and install a certificate if necessary** (see above).
-4. **Package the app:**
-    ```pwsh
-    winapp pack ./msix --cert ./devcert.pfx --manifest ./AppxManifest.minimal.xml
-    ```
-5. **Install and set up the app** (see above).
-6. **Have (slightly less) fun!**
+5. **Generate a certificate** (first time only, see above).
+6. **Package, sign, install and set up the app** (see above).
+7. **Have (slightly less) fun!**
 
 ## FAQ
 > **Q:** Is this a joke?  

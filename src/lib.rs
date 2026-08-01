@@ -4,6 +4,7 @@ mod quack;
 
 use crate::quack::quack;
 use std::ffi::c_void;
+use windows::ApplicationModel::Resources::ResourceLoader;
 use windows::core::implement;
 use windows::Win32::Foundation::{E_NOTIMPL, HMODULE};
 use windows::Win32::System::Com::IClassFactory;
@@ -14,33 +15,35 @@ use windows::Win32::UI::Shell::{
     IEnumExplorerCommand, IExplorerCommand, IShellItemArray,
     IExplorerCommand_Impl, SHStrDupW
 };
-use windows_core::{w, Error, IUnknown, Interface, Ref, BOOL, GUID, HRESULT, HSTRING, PWSTR};
+use windows::core::{h, Error, IUnknown, Interface, Ref, BOOL, GUID, HRESULT, HSTRING, PWSTR};
 
 #[implement(IExplorerCommand)]
 pub struct QuackCommand;
 
 impl IExplorerCommand_Impl for QuackCommand_Impl {
     fn GetTitle(&self, psiitemarray: Ref<IShellItemArray>) -> windows_core::Result<PWSTR> {
-        let title = if let Some(items) = psiitemarray.as_ref() {
+        let id = if let Some(items) = psiitemarray.as_ref() {
             let count = unsafe { items.GetCount()? };
             match count {
-                0 => w!("Quack"), // Shouldn't be reachable
+                0 => h!("QuackMisc"), // Shouldn't be reachable
                 1 => unsafe {
                     let item = items.GetItemAt(0)?;
                     let attr = item.GetAttributes(SFGAO_FOLDER)?;
                     if (attr & SFGAO_FOLDER).0 != 0 {
-                        w!("Quack at this folder")
+                        h!("QuackDir")
                     } else {
-                        w!("Quack at this file")
+                        h!("QuackFile")
                     }
                 },
-                _ => w!("Quack at these items"),
+                _ => h!("QuackMulti"),
             }
         } else {
-            w!("Quack here")
+            h!("QuackHere")
         };
+        let loader = ResourceLoader::GetForViewIndependentUse()?;
+        let value = loader.GetString(id)?;
         unsafe {
-            SHStrDupW(title)
+            SHStrDupW(&value)
         }
     }
 

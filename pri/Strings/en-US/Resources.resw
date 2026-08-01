@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+    <data name="DisplayName"><value>Quack</value></data>
+    <data name="Description"><value>Quacks.</value></data>
+    <data name="QuackFile"><value>Quack at this file</value></data>
+    <data name="QuackDir"><value>Quack at this folder</value></data>
+    <data name="QuackMulti"><value>Quack at these items</value></data>
+    <data name="QuackHere"><value>Quack here</value></data>
+    <data name="QuackMisc"><value>Quack</value></data>
+</root>

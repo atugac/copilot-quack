@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+    <data name="DisplayName"><value>Kwak</value></data>
+    <data name="Description"><value>Kwacze.</value></data>
+    <data name="QuackFile"><value>Kwaknij na ten plik</value></data>
+    <data name="QuackDir"><value>Kwaknij na ten folder</value></data>
+    <data name="QuackMulti"><value>Kwaknij na te elementy</value></data>
+    <data name="QuackHere"><value>Kwaknij tutaj</value></data>
+    <data name="QuackMisc"><value>Kwaknij</value></data>
+</root>

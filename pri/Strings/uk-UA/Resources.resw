@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+    <data name="DisplayName"><value>Кряк</value></data>
+    <data name="Description"><value>Крякає.</value></data>
+    <data name="QuackFile"><value>Крякнути на цей файл</value></data>
+    <data name="QuackDir"><value>Крякнути на цю теку</value></data>
+    <data name="QuackMulti"><value>Крякнути на ці елементи</value></data>
+    <data name="QuackHere"><value>Крякнути тут</value></data>
+    <data name="QuackMisc"><value>Крякнути</value></data>
+</root>

@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+    <data name="DisplayName"><value>ガーガー</value></data>
+    <data name="Description"><value>ガーガーする。</value></data>
+    <data name="QuackFile"><value>このファイルにガーガーする</value></data>
+    <data name="QuackDir"><value>このフォルダにガーガーする</value></data>
+    <data name="QuackMulti"><value>これらのアイテムにガーガーする</value></data>
+    <data name="QuackHere"><value>ここでガーガーする</value></data>
+    <data name="QuackMisc"><value>ガーガーする</value></data>
+</root>

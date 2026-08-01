@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<resources targetOsVersion="10.0.0" majorVersion="1">
+  <index root="/pri" startIndexAt="/">
+    <default>
+      <qualifier name="Language" value="en-US"/>
+	  <qualifier name="Scale" value="200"/>
+	  <qualifier name="TargetSize" value="256"/>
+	  <qualifier name="AlternateForm" value=""/>
+    </default>
+    <indexer-config type="folder" foldernameAsQualifier="true" filenameAsQualifier="true" qualifierDelimiter="." />
+    <indexer-config type="resw" convertDotsToSlashes="true" initialPath=""/>
+  </index>
+</resources>
