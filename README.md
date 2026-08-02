@@ -35,8 +35,9 @@ to play audio and provide context menu support.
 - **Privacy-first:** No artificial intelligence, only avian intelligence.
 
 ## Structure
-- `quack.exe`: The main entry point handling the `quack://` protocol and the Copilot key.
+- `quack.exe`: The executable handling the `quack://` protocol and the Copilot key.
 - `quack_shell.dll`: The COM shell extension that provides the context menu integration.
+- `duck.exe`: The executable handling the share menu integration.
 
 ## Requirements
 - **Runtime requirements:**
