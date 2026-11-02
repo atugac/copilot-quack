@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+    <data name="DisplayName"><value>Vakvak</value></data>
+    <data name="Description"><value>Vakvaklar.</value></data>
+    <data name="QuackFile"><value>Bu dosyayı vakvakla</value></data>
+    <data name="QuackDir"><value>Bu klasörü vakvakla</value></data>
+    <data name="QuackMulti"><value>Bu öğeleri vakvakla</value></data>
+    <data name="QuackHere"><value>Buraya vakvakla</value></data>
+    <data name="QuackMisc"><value>Vakvakla</value></data>
+    <data name="ShareDisplayName"><value>Ördek</value></data>
+    <data name="ShareDescription"><value>Bir ördek.</value></data>
+</root>
